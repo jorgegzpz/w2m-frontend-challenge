@@ -1,0 +1,9 @@
+.page-not-found {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__title {
+    margin-bottom: 50px;
+  }
+}
