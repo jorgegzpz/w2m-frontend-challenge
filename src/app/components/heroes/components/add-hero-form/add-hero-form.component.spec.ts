@@ -8,7 +8,7 @@ describe('AddHeroFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddHeroFormComponent]
+      declarations: [AddHeroFormComponent],
     });
     fixture = TestBed.createComponent(AddHeroFormComponent);
     component = fixture.componentInstance;

@@ -8,7 +8,7 @@ describe('RemoveHeroModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RemoveHeroModalComponent]
+      declarations: [RemoveHeroModalComponent],
     });
     fixture = TestBed.createComponent(RemoveHeroModalComponent);
     component = fixture.componentInstance;

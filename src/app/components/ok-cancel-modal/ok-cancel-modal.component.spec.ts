@@ -8,7 +8,7 @@ describe('OkCancelModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OkCancelModalComponent]
+      declarations: [OkCancelModalComponent],
     });
     fixture = TestBed.createComponent(OkCancelModalComponent);
     component = fixture.componentInstance;
