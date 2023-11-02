@@ -5,7 +5,7 @@ import { Hero } from '../model/hero.model';
   providedIn: 'root',
 })
 export class HeroesHandlerService {
-  heroesList: Hero[] = [
+  private heroesList: Hero[] = [
     { id: 0, name: 'Ant-Man' },
     { id: 1, name: 'Aquaman' },
     { id: 2, name: 'Batman' },
@@ -28,4 +28,36 @@ export class HeroesHandlerService {
     { id: 19, name: 'Wolverine' },
     { id: 20, name: 'Wonder Woman' },
   ];
+
+  getHeroesList(): Hero[] {
+    return this.heroesList;
+  }
+
+  getHeroById(id: number): Hero | null {
+    return this.heroesList.find(hero => hero.id === id) || null;
+  }
+
+  getHeroByTemplate(template: string): Hero[] | null {
+    return this.heroesList.filter(hero => hero.name.includes(template)) || null;
+  }
+
+  addHero(hero: Hero) {
+    this.heroesList.push({
+      ...hero,
+      id: this.heroesList.length,
+    });
+  }
+
+  editHero(id: number, name: string): number {
+    const heroToEditIndex = this.heroesList.findIndex(hero => hero.id === id);
+    if (heroToEditIndex > -1) {
+      this.heroesList[heroToEditIndex].name = name;
+    }
+    return heroToEditIndex;
+  }
+
+  removeHero(id: number): Hero[] {
+    const heroToRemoveIndex = this.heroesList.findIndex(hero => hero.id === id);
+    return this.heroesList.splice(heroToRemoveIndex);
+  }
 }
