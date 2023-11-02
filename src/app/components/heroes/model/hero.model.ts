@@ -4,3 +4,10 @@ export interface Hero {
   powers?: string[];
   img?: string;
 }
+
+export enum HeroColum {
+  id = 'Id',
+  img = 'Image',
+  name = 'Name',
+  powers = 'Powers',
+}

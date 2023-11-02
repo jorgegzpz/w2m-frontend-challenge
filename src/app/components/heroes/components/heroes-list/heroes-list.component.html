@@ -1,9 +1,11 @@
-<table mat-table [dataSource]="heroesList" class="mat-elevation-z8">
-  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-  </ng-container>
+<section class="heroes-list">
+  <table class="heroes-list__table mat-elevation-z8" mat-table [dataSource]="heroesList">
+    <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay; let i = index">
+      <th mat-header-cell *matHeaderCellDef>{{ displayedColumns[i] }}</th>
+      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-</table>
+    <tr class="heroes-list__header" mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+  </table>
+</section>

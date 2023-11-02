@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Hero } from '../../model/hero.model';
+import { Hero, HeroColum } from '../../model/hero.model';
 
 @Component({
   selector: 'app-heroes-list',
@@ -9,6 +9,6 @@ import { Hero } from '../../model/hero.model';
 export class HeroesListComponent {
   @Input() heroesList: Hero[] = [];
 
-  displayedColumns: string[] = ['id', 'name'];
-  columnsToDisplay: string[] = this.displayedColumns.slice();
+  displayedColumns: string[] = Object.values(HeroColum);
+  columnsToDisplay: string[] = Object.keys(HeroColum);
 }
