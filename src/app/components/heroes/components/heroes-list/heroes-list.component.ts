@@ -30,4 +30,12 @@ export class HeroesListComponent implements AfterViewInit {
       )
       .subscribe();
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
+    this.dataSource.filter = filterValue;
+    // this.dataSource = new MatTableDataSource(this.heroesHandlerService.getHeroByTemplate(templateFilter) || []);
+    // this.dataSource.paginator = this.paginator;
+  }
 }
