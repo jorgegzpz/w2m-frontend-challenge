@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +30,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     OkCancelModalComponent,
     PageNotFoundComponent,
   ],
-  imports: [RouterModule.forRoot(AppRoutes), BrowserModule, BrowserAnimationsModule, MatTableModule, MatButtonModule],
+  imports: [RouterModule.forRoot(AppRoutes), BrowserModule, BrowserAnimationsModule, MatTableModule, MatButtonModule, MatPaginatorModule],
   providers: [],
   bootstrap: [AppComponent],
 })

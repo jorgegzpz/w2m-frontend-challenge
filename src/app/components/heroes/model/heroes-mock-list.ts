@@ -1,4 +1,6 @@
-export const HEROES_MOCK_LIST = [
+import { Hero } from './hero.model';
+
+export const HEROES_MOCK_LIST: Hero[] = [
   {
     id: 1,
     name: 'Superman',

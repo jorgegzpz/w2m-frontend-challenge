@@ -1,7 +1,23 @@
 .heroes {
+  &__header {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__header-title {
+    padding: 0 20px;
+    font-family: CombackHomeRegular, Roboto, sans-serif;
+  }
+
+  &__header-image {
+    width: 48px;
+    height: 48px;
+  }
+
   &__list {
     display: flex;
     justify-content: center;
-    background-color: #151515;
   }
 }

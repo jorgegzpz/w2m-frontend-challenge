@@ -1,5 +1,6 @@
 <section class="heroes-list">
-  <table class="heroes-list__table mat-elevation-z8" mat-table [dataSource]="heroesList">
+  <mat-paginator #paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+  <table class="heroes-list__table mat-elevation-z8" mat-table [dataSource]="dataSource">
     <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay; let i = index">
       <th mat-header-cell *matHeaderCellDef>{{ displayedColumns[i] }}</th>
       <td mat-cell *matCellDef="let element">{{ element[column] }}</td>

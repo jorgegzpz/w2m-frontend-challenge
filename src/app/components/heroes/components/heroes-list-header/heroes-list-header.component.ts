@@ -11,14 +11,14 @@ export class HeroesListHeaderComponent {
   constructor(private heroesHandlerService: HeroesHandlerService) {}
 
   addHero() {
-    this.heroesHandlerService.addHero({ name: 'New super hero' } as Hero);
+    this.heroesHandlerService.addHero({ name: 'New super hero', powers: ['Be the new super cool hero'] } as Hero);
   }
 
   editHero() {
-    this.heroesHandlerService.editHero(0, 'Hero edited');
+    this.heroesHandlerService.editHero(1, 'Hero edited');
   }
 
   removeHero() {
-    this.heroesHandlerService.removeHero(0);
+    this.heroesHandlerService.removeHero(1);
   }
 }

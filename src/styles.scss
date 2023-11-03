@@ -4,8 +4,15 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #151515;
+  background-image: linear-gradient(to right, #1a1a2d, #2d2d2d);
+}
+
+// Fonts
+@font-face {
+  font-family: CombackHomeRegular;
+  src: url("assets/fonts/CombackHomeRegular.ttf") format("truetype");
 }
