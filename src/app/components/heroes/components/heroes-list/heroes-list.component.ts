@@ -18,7 +18,7 @@ export class HeroesListComponent implements AfterViewInit {
 
   @ViewChild('paginator') paginator: MatPaginator;
 
-  constructor(private heroesHandlerService: HeroesHandlerService) {}
+  constructor(protected heroesHandlerService: HeroesHandlerService) {}
 
   ngAfterViewInit() {
     this.heroesHandlerService.heroListChanged$
@@ -33,9 +33,11 @@ export class HeroesListComponent implements AfterViewInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log(filterValue);
     this.dataSource.filter = filterValue;
-    // this.dataSource = new MatTableDataSource(this.heroesHandlerService.getHeroByTemplate(templateFilter) || []);
-    // this.dataSource.paginator = this.paginator;
+    this.heroesHandlerService.checkSelectedHero(this.dataSource.filteredData);
+  }
+
+  highlight(heroRow: Hero) {
+    this.heroesHandlerService.setSelectedHero(heroRow);
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Hero } from '../model/hero.model';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Hero, HeroUndefinable } from '../model/hero.model';
 import { HEROES_MOCK_LIST } from '../model/heroes-mock-list';
 
 @Injectable({
@@ -8,8 +8,10 @@ import { HEROES_MOCK_LIST } from '../model/heroes-mock-list';
 })
 export class HeroesHandlerService {
   heroListChanged$: BehaviorSubject<Hero[]> = new BehaviorSubject(HEROES_MOCK_LIST);
+  heroSelected$: Subject<HeroUndefinable> = new Subject();
 
   private heroesList: Hero[] = HEROES_MOCK_LIST;
+  private selectedHero: HeroUndefinable = undefined;
 
   getHeroesList(): Hero[] {
     return this.heroesList;
@@ -46,9 +48,29 @@ export class HeroesHandlerService {
     if (heroToRemoveIndex > -1) {
       const heroRemoved = this.heroesList.splice(heroToRemoveIndex, 1);
       this.heroListChanged$.next(this.heroesList);
+      this.setSelectedHero();
       return heroRemoved;
     } else {
       return [];
+    }
+  }
+
+  setSelectedHero(hero: HeroUndefinable = undefined): void {
+    if (this.selectedHero === hero) {
+      this.selectedHero = undefined;
+    } else {
+      this.selectedHero = hero;
+    }
+    this.heroSelected$.next(this.selectedHero);
+  }
+
+  getSelectedHero(): HeroUndefinable {
+    return this.selectedHero;
+  }
+
+  checkSelectedHero(filteredHeroes: Hero[]): void {
+    if (this.selectedHero ?? filteredHeroes.findIndex(filteredHero => filteredHero.id === this.selectedHero?.id) === -1) {
+      this.setSelectedHero();
     }
   }
 }

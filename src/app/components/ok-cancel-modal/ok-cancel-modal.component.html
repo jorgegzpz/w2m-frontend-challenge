@@ -1,1 +1,10 @@
-<p>ok-cancel-modal works!</p>
+<section class="ok-cancel-modal">
+  <header class="ok-cancel-modal__header" mat-dialog-content>
+    <p>{{ data.title }}</p>
+    <p *ngIf="data.subtitle" class="ok-cancel-modal__subtitle">{{ data.subtitle }}</p>
+  </header>
+  <footer mat-dialog-actions class="ok-cancel-modal__footer">
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button [mat-dialog-close]="data.id" cdkFocusInitial>Ok</button>
+  </footer>
+</section>

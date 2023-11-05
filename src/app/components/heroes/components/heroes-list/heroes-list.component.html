@@ -9,7 +9,13 @@
       <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
     </ng-container>
     <tr class="heroes-list__header" mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    <tr
+      class="heroes-list__row"
+      mat-row
+      *matRowDef="let row; columns: columnsToDisplay"
+      [ngClass]="{ 'heroes-list__row--highlight': (heroesHandlerService.heroSelected$ | async)?.id === row.id }"
+      (click)="highlight(row)"
+    ></tr>
     <tr class="mat-row" *matNoDataRow>
       <div class="heroes-list__no-data mat-cell" [attr.colspan]="displayedColumns.length">
         <img class="heroes-list__no-data-img" src="./assets/images/angry-batman.png" alt="Angry Hero" />

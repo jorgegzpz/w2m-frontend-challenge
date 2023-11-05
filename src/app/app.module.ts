@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -13,7 +15,6 @@ import { AddHeroFormComponent } from './components/heroes/components/add-hero-fo
 import { EditHeroFormComponent } from './components/heroes/components/edit-hero-form/edit-hero-form.component';
 import { HeroesListHeaderComponent } from './components/heroes/components/heroes-list-header/heroes-list-header.component';
 import { HeroesListComponent } from './components/heroes/components/heroes-list/heroes-list.component';
-import { RemoveHeroModalComponent } from './components/heroes/components/remove-hero-modal/remove-hero-modal.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { OkCancelModalComponent } from './components/ok-cancel-modal/ok-cancel-modal.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -26,7 +27,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HeroesListHeaderComponent,
     AddHeroFormComponent,
     EditHeroFormComponent,
-    RemoveHeroModalComponent,
     OkCancelModalComponent,
     PageNotFoundComponent,
   ],
@@ -39,6 +39,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    MatDialogModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -3,8 +3,12 @@
   justify-content: center;
   background-color: #151515;
   margin-bottom: 20px;
-}
 
-button {
-  margin: 16px 8px;
+  &__button {
+    margin: 16px 8px;
+
+    &.mat-mdc-raised-button[disabled][disabled] {
+      background-color: #555;
+    }
+  }
 }
