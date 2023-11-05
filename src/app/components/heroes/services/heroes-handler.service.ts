@@ -25,13 +25,15 @@ export class HeroesHandlerService {
     return this.heroesList.filter(hero => hero.name.includes(template)) || null;
   }
 
-  addHero(hero: Hero) {
+  addHero(hero: Hero): number {
+    const id = this.heroesList[this.heroesList.length - 1].id + 1;
     this.heroesList.push({
-      id: this.heroesList[this.heroesList.length - 1].id + 1,
+      id,
       name: hero.name,
       powers: hero.powers,
     });
     this.heroListChanged$.next(this.heroesList);
+    return id;
   }
 
   editHero(heroToEdit: Hero): number {

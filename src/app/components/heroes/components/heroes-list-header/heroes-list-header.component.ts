@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { HeroModalComponent } from 'src/app/components/hero-modal/hero-modal.component';
+import { Observable, map } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
 import { DialogData } from 'src/app/model/dialog-data.model';
-import { Hero, HeroColum, ModalTitle } from '../../model/hero.model';
+import { Hero, HeroColum, HeroUndefinable, ModalTitle } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
 
 @Component({
@@ -26,37 +26,21 @@ export class HeroesListHeaderComponent implements OnInit {
   }
 
   addHero() {
-    this.heroesHandlerService.addHero({ name: 'New super hero', powers: ['Be the new super cool hero'] } as Hero);
+    const newHero = { id: -1, name: '', powers: [] } as HeroUndefinable;
+    this.openModalWithInputs(newHero, ModalTitle.add).subscribe(hero => {
+      if (hero) {
+        this.heroesHandlerService.addHero(hero);
+      }
+    });
   }
 
   editHero() {
     const selectedHero = this.heroesHandlerService.getSelectedHero();
 
     if (selectedHero) {
-      const dialogRef = this.dialog.open(HeroModalComponent, {
-        width: '500px',
-        data: {
-          title: ModalTitle.edit,
-          id: selectedHero.id,
-          inputs: [
-            { label: HeroColum.name, value: selectedHero.name },
-            { label: HeroColum.powers, value: selectedHero.powers?.join(',') },
-          ],
-        },
-      });
-
-      dialogRef.afterClosed().subscribe((dialogData: DialogData) => {
-        const inputs = dialogData?.inputs;
-        if (inputs && inputs.length > 0) {
-          const name = inputs.find(input => input.label === HeroColum.name)?.value;
-          const powers = inputs.find(input => input.label === HeroColum.powers)?.value.split(',');
-          if (name && powers) {
-            this.heroesHandlerService.editHero({
-              name,
-              powers,
-              id: dialogData.id,
-            } as Hero);
-          }
+      this.openModalWithInputs(selectedHero, ModalTitle.edit).subscribe(hero => {
+        if (hero) {
+          this.heroesHandlerService.editHero(hero);
         }
       });
     }
@@ -74,5 +58,37 @@ export class HeroesListHeaderComponent implements OnInit {
         this.heroesHandlerService.removeHero(dialogData.id);
       });
     }
+  }
+
+  private openModalWithInputs(hero: HeroUndefinable, title: string): Observable<HeroUndefinable> {
+    const dialogRef = this.dialog.open(OkCancelModalComponent, {
+      width: '500px',
+      data: {
+        title,
+        id: hero?.id,
+        inputs: [
+          { label: HeroColum.name, value: hero?.name },
+          { label: HeroColum.powers, value: hero?.powers?.join(',') },
+        ],
+      },
+    });
+
+    return dialogRef.afterClosed().pipe(
+      map((dialogData: DialogData) => {
+        const inputs = dialogData?.inputs;
+        if (inputs && inputs.length > 0) {
+          const name = inputs.find(input => input.label === HeroColum.name)?.value;
+          const powers = inputs.find(input => input.label === HeroColum.powers)?.value.split(',');
+          if (name && powers) {
+            return {
+              name,
+              powers,
+              id: dialogData.id,
+            } as Hero;
+          }
+        }
+        return undefined;
+      })
+    );
   }
 }
