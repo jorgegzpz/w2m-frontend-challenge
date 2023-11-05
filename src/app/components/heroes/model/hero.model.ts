@@ -12,13 +12,6 @@ export enum HeroColum {
   powers = 'Powers',
 }
 
-export interface HeroDialogData {
-  id: number;
-  name: string;
-  title: string;
-  subtitle?: string;
-}
-
 export enum ModalTitle {
   remove = 'Are you sure you want to remove this hero?',
   edit = 'Edit the hero',

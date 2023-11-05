@@ -3,8 +3,20 @@
     <p>{{ data.title }}</p>
     <p *ngIf="data.subtitle" class="ok-cancel-modal__subtitle">{{ data.subtitle }}</p>
   </header>
+  <form *ngIf="data.inputs" class="ok-cancel-modal__inputs">
+    <mat-form-field *ngFor="let input of data.inputs">
+      <mat-label>{{ input.label }}</mat-label>
+      <input
+        matInput
+        placeholder="Place {{ input.label }} here"
+        name="{{ input.label }}"
+        #{{input.label}}="ngModel"
+        [(ngModel)]="input.value"
+      />
+    </mat-form-field>
+  </form>
   <footer mat-dialog-actions class="ok-cancel-modal__footer">
     <button mat-raised-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button [mat-dialog-close]="data.id" cdkFocusInitial>Ok</button>
+    <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
   </footer>
 </section>

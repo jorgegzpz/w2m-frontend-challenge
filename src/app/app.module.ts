@@ -18,6 +18,7 @@ import { HeroesListComponent } from './components/heroes/components/heroes-list/
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { OkCancelModalComponent } from './components/ok-cancel-modal/ok-cancel-modal.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HeroModalComponent } from './components/hero-modal/hero-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     EditHeroFormComponent,
     OkCancelModalComponent,
     PageNotFoundComponent,
+    HeroModalComponent,
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

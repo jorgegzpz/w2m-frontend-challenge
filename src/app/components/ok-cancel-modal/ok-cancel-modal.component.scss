@@ -1,4 +1,6 @@
 .ok-cancel-modal {
+  padding: 20px;
+
   &__header {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,11 @@
 
   &__subtitle {
     font-weight: 500;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
   }
 
   &__footer {
