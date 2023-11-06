@@ -11,8 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
-import { AddHeroFormComponent } from './components/heroes/components/add-hero-form/add-hero-form.component';
-import { EditHeroFormComponent } from './components/heroes/components/edit-hero-form/edit-hero-form.component';
 import { HeroesListHeaderComponent } from './components/heroes/components/heroes-list-header/heroes-list-header.component';
 import { HeroesListComponent } from './components/heroes/components/heroes-list/heroes-list.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
@@ -25,8 +23,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HeroesComponent,
     HeroesListComponent,
     HeroesListHeaderComponent,
-    AddHeroFormComponent,
-    EditHeroFormComponent,
     OkCancelModalComponent,
     PageNotFoundComponent,
   ],
