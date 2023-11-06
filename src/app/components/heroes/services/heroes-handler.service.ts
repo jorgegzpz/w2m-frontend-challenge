@@ -21,8 +21,8 @@ export class HeroesHandlerService {
     return this.heroesList.find(hero => hero.id === id) || null;
   }
 
-  getHeroByTemplate(template: string): Hero[] | null {
-    return this.heroesList.filter(hero => hero.name.includes(template)) || null;
+  checkHeroFilter(hero: Hero, filter: string): boolean {
+    return hero.name.includes(filter);
   }
 
   addHero(hero: Hero): number {

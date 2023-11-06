@@ -29,6 +29,8 @@ export class HeroesListComponent implements AfterViewInit {
         })
       )
       .subscribe();
+
+    this.dataSource.filterPredicate = (hero: Hero, filter: string) => !filter || this.heroesHandlerService.checkHeroFilter(hero, filter);
   }
 
   applyFilter(event: Event) {
