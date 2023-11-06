@@ -47,15 +47,15 @@ export class HeroesHandlerService {
     return heroToEditIndex;
   }
 
-  removeHero(id: number): Hero[] {
+  removeHero(id: number): HeroUndefinable {
     const heroToRemoveIndex = this.heroesList.findIndex(hero => hero.id === id);
     if (heroToRemoveIndex > -1) {
       const heroRemoved = this.heroesList.splice(heroToRemoveIndex, 1);
       this.heroListChanged$.next(this.heroesList);
       this.setSelectedHero();
-      return heroRemoved;
+      return heroRemoved[0];
     } else {
-      return [];
+      return undefined;
     }
   }
 

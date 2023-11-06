@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatDialog } from '@angular/material/dialog';
 import { HeroesListHeaderComponent } from './heroes-list-header.component';
 
 describe('HeroesListHeaderComponent', () => {
@@ -9,6 +10,7 @@ describe('HeroesListHeaderComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeroesListHeaderComponent],
+      providers: [{ provide: MatDialog, useValue: {} }],
     });
     fixture = TestBed.createComponent(HeroesListHeaderComponent);
     component = fixture.componentInstance;
