@@ -11,13 +11,15 @@
         matInput
         placeholder="Place {{ input.label }} here"
         name="{{ input.label }}"
-        #{{input.label}}="ngModel"
         [(ngModel)]="input.value"
+        [formControl]="input.formControl"
+        [errorStateMatcher]="input.matcher"
       />
+      <mat-error *ngIf="input.formControl?.hasError('required')">{{ input.label }} is <strong>required</strong> </mat-error>
     </mat-form-field>
   </form>
   <footer mat-dialog-actions class="ok-cancel-modal__footer">
     <button mat-raised-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    <button mat-raised-button cdkFocusInitial (click)="onOk()">Ok</button>
   </footer>
 </section>

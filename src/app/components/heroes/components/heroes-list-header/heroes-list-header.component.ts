@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, map } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
+import { CustomErrorStateMatcher } from 'src/app/model/custom-error-state-matcher';
 import { DialogData } from 'src/app/model/dialog-data.model';
 import { Hero, HeroColum, HeroUndefinable, ModalTitle } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
@@ -69,8 +71,13 @@ export class HeroesListHeaderComponent implements OnInit {
         title,
         id: hero?.id,
         inputs: [
-          { label: HeroColum.name, value: hero?.name },
-          { label: HeroColum.powers, value: hero?.powers?.join(',') },
+          {
+            label: HeroColum.name,
+            value: hero?.name,
+            formControl: new FormControl('', [Validators.required]),
+            matcher: new CustomErrorStateMatcher(),
+          },
+          { label: HeroColum.powers, value: hero?.powers?.join(','), formControl: new FormControl('') },
         ],
       },
     });

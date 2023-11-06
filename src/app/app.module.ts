@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +17,6 @@ import { HeroesListComponent } from './components/heroes/components/heroes-list/
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { OkCancelModalComponent } from './components/ok-cancel-modal/ok-cancel-modal.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { InputUppercaseDirective } from './directives/input-uppercase/input-uppercase.directive';
 import { DirectivesModuleModule } from './directives/directives-module.module';
 
 @NgModule({
@@ -42,6 +41,7 @@ import { DirectivesModuleModule } from './directives/directives-module.module';
     MatDialogModule,
     FormsModule,
     DirectivesModuleModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
