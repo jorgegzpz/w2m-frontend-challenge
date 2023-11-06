@@ -13,7 +13,7 @@
       class="heroes-list__row"
       mat-row
       *matRowDef="let row; columns: columnsToDisplay"
-      [ngClass]="{ 'heroes-list__row--highlight': (heroesHandlerService.heroSelected$ | async)?.id === row.id }"
+      [ngClass]="{ 'heroes-list__row--highlight': (heroSelected$ | async)?.id === row.id }"
       (click)="highlight(row)"
     ></tr>
     <tr class="mat-row" *matNoDataRow>

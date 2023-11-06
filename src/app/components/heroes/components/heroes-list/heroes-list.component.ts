@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { map } from 'rxjs';
-import { Hero, HeroColum } from '../../model/hero.model';
+import { Subject, map } from 'rxjs';
+import { Hero, HeroColum, HeroUndefinable } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
 
 @Component({
@@ -16,11 +16,15 @@ export class HeroesListComponent implements AfterViewInit {
 
   dataSource = new MatTableDataSource<Hero>();
 
+  heroSelected$: Subject<HeroUndefinable>;
+
   @ViewChild('paginator') paginator: MatPaginator;
 
-  constructor(protected heroesHandlerService: HeroesHandlerService) {}
+  constructor(private heroesHandlerService: HeroesHandlerService) {}
 
   ngAfterViewInit() {
+    this.heroSelected$ = this.heroesHandlerService.heroSelected$;
+
     this.heroesHandlerService.heroListChanged$
       .pipe(
         map(heroesList => {

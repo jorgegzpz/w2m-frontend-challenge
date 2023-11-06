@@ -62,7 +62,7 @@ export class HeroesListHeaderComponent implements OnInit {
     }
   }
 
-  private openModalWithInputs(hero: HeroUndefinable, title: string): Observable<HeroUndefinable> {
+  openModalWithInputs(hero: HeroUndefinable, title: string): Observable<HeroUndefinable> {
     const dialogRef = this.dialog.open(OkCancelModalComponent, {
       width: '500px',
       data: {
@@ -79,8 +79,15 @@ export class HeroesListHeaderComponent implements OnInit {
       map((dialogData: DialogData) => {
         const inputs = dialogData?.inputs;
         if (inputs && inputs.length > 0) {
-          const name = inputs.find(input => input.label === HeroColum.name)?.value;
-          const powers = inputs.find(input => input.label === HeroColum.powers)?.value.split(',');
+          let name;
+          let powers;
+          for (const input of inputs) {
+            if (input.label === HeroColum.name) {
+              name = input.value;
+            } else if (input.label === HeroColum.powers) {
+              powers = input.value.split(',');
+            }
+          }
           if (name && powers) {
             return {
               name,
