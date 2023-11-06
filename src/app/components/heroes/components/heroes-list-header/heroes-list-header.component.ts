@@ -55,7 +55,9 @@ export class HeroesListHeaderComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe((dialogData: DialogData) => {
-        this.heroesHandlerService.removeHero(dialogData.id);
+        if (dialogData) {
+          this.heroesHandlerService.removeHero(dialogData.id);
+        }
       });
     }
   }

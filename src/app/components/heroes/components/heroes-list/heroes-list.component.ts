@@ -14,7 +14,7 @@ export class HeroesListComponent implements AfterViewInit {
   displayedColumns: string[] = Object.values(HeroColum);
   columnsToDisplay: string[] = Object.keys(HeroColum);
 
-  dataSource: MatTableDataSource<Hero>;
+  dataSource = new MatTableDataSource<Hero>();
 
   @ViewChild('paginator') paginator: MatPaginator;
 
