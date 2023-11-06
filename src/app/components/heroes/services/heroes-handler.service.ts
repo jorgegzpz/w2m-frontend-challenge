@@ -29,7 +29,7 @@ export class HeroesHandlerService {
     const id = this.heroesList[this.heroesList.length - 1].id + 1;
     this.heroesList.push({
       id,
-      name: hero.name,
+      name: hero.name.toUpperCase(),
       powers: hero.powers,
     });
     this.heroListChanged$.next(this.heroesList);
@@ -39,7 +39,7 @@ export class HeroesHandlerService {
   editHero(heroToEdit: Hero): number {
     const heroToEditIndex = this.heroesList.findIndex(hero => hero.id === heroToEdit.id);
     if (heroToEditIndex > -1) {
-      this.heroesList[heroToEditIndex].name = heroToEdit.name;
+      this.heroesList[heroToEditIndex].name = heroToEdit.name.toUpperCase();
       this.heroesList[heroToEditIndex].powers = heroToEdit.powers;
       this.heroListChanged$.next(this.heroesList);
       this.setSelectedHero();
