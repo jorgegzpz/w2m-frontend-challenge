@@ -26,6 +26,6 @@ export class OkCancelModalComponent {
         }
       }
     }
-    this.dialogRef.close();
+    this.dialogRef.close(this.data);
   }
 }
