@@ -3,7 +3,7 @@ import { Hero } from './hero.model';
 export const HEROES_MOCK_LIST: Hero[] = [
   {
     id: 1,
-    name: 'Superman',
+    name: 'SUPERMAN',
     powers: [
       'Superhuman Strength',
       'Superhuman Speed',
@@ -19,7 +19,7 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 2,
-    name: 'Batman',
+    name: 'BATMAN',
     powers: [
       'Genius-Level Intellect',
       'Peak Human Physical Condition',
@@ -30,7 +30,7 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 3,
-    name: 'Wonder Woman',
+    name: 'WONDER WOMAN',
     powers: [
       'Superhuman Strength',
       'Superhuman Speed',
@@ -43,7 +43,7 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 4,
-    name: 'Green Lantern (Hal Jordan)',
+    name: 'GREEN LANTERN (HAL JORDAN)',
     powers: [
       'Energy Projection and Constructs (via Power Ring)',
       'Flight (via Power Ring)',
@@ -55,7 +55,7 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 5,
-    name: 'The Flash (Barry Allen)',
+    name: 'THE FLASH (BARRY ALLEN)',
     powers: [
       'Superhuman Speed',
       'Time Travel',
@@ -66,12 +66,12 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 6,
-    name: 'Aquaman',
+    name: 'AQUAMAN',
     powers: ['Social Influencer', 'Control Over Marine Life', 'Endurance', 'Enhanced Senses', 'Superhuman Strength', 'Telepathy'],
   },
   {
     id: 7,
-    name: 'Martian Manhunter',
+    name: 'MARTIAN MANHUNTER',
     powers: [
       'Superhuman Strength',
       'Superhuman Speed',
@@ -85,52 +85,52 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 8,
-    name: 'Doctor Fate (Kent Nelson)',
+    name: 'DOCTOR FATE (KENT NELSON)',
     powers: ['Magic Manipulation', 'Flight', 'Teleportation', 'Telekinesis', 'Energy Projection and Constructs'],
   },
   {
     id: 9,
-    name: 'Hawkman (Carter Hall)',
+    name: 'HAWKMAN (CARTER HALL)',
     powers: ['Flight via Nth Metal Wings and Harness', 'Enhanced Strength, Speed, Agility, and Durability via Nth Metal Armor and Harness'],
   },
   {
     id: 10,
-    name: 'Green Arrow (Oliver Queen)',
+    name: 'GREEN ARROW (OLIVER QUEEN)',
     powers: ['Peak Human Physical Condition', 'Master Archer and Marksman', 'Expert Combatant'],
   },
   {
     id: 11,
-    name: 'Black Canary (Dinah Laurel Lance)',
+    name: 'BLACK CANARY (DINAH LAUREL LANCE)',
     powers: ['Canary Cry: Ultrasonic scream capable of incapacitating foes or objects'],
   },
   {
     id: 12,
-    name: 'Atom (Ray Palmer)',
+    name: 'ATOM (RAY PALMER)',
     powers: ['Size Alteration: Can shrink down to subatomic size or grow to giant size'],
   },
   {
     id: 13,
-    name: '(The) Spectre (Jim Corrigan)',
+    name: '(THE) SPECTRE (JIM CORRIGAN)',
     powers: ['(Divine) Omnipotence: Can manipulate reality, time, space, matter, energy, souls, etc.'],
   },
   {
     id: 14,
-    name: '(The) Question (Vic Sage)',
+    name: '(THE) QUESTION (VIC SAGE)',
     powers: ['(Martial) Arts Mastery: Expert in multiple forms of martial arts'],
   },
   {
     id: 15,
-    name: '(The) Sandman (Wesley Dodds)',
+    name: '(THE) SANDMAN (WESLEY DODDS)',
     powers: ["(Dream) Control: Can enter people's dreams and manipulate them"],
   },
   {
     id: 16,
-    name: '(The) Flash (Jay Garrick)',
+    name: '(THE) FLASH (JAY GARRICK)',
     powers: ['(Speed) Force Manipulation: Can manipulate the Speed Force to enhance his speed and other abilities'],
   },
   {
     id: 17,
-    name: 'Green Lantern (John Stewart)',
+    name: 'GREEN LANTERN (JOHN STEWART)',
     powers: [
       'Energy Projection and Constructs (via Power Ring)',
       'Flight (via Power Ring)',
@@ -142,22 +142,22 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 18,
-    name: 'Black Lightning (Jefferson Pierce)',
+    name: 'BLACK LIGHTNING (JEFFERSON PIERCE)',
     powers: ['Electrokinesis', 'Flight', 'Force Field Generation', 'Superhuman Strength', 'Superhuman Durability'],
   },
   {
     id: 19,
-    name: '(The) Atom (Ryan Choi)',
+    name: '(THE) ATOM (RYAN CHOI)',
     powers: ['Size Alteration: Can shrink down to subatomic size or grow to giant size'],
   },
   {
     id: 20,
-    name: 'Batgirl (Barbara Gordon)',
+    name: 'BATGIRL (BARBARA GORDON)',
     powers: ['Peak Human Physical Condition', 'Expert Combatant', 'Expert Detective', 'Genius-Level Intellect'],
   },
   {
     id: 21,
-    name: 'Cyborg (Victor Stone)',
+    name: 'CYBORG (VICTOR STONE)',
     powers: [
       'Superhuman Strength',
       'Superhuman Durability',
@@ -182,32 +182,32 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 23,
-    name: '(The) Spectre (Aztar)',
+    name: '(THE) SPECTRE (AZTAR)',
     powers: ['(Divine) Omnipotence: Can manipulate reality, time, space, matter, energy, souls, etc.'],
   },
   {
     id: 24,
-    name: '(The) Question (Renee Montoya)',
+    name: '(THE) QUESTION (RENEE MONTOYA)',
     powers: ['(Martial) Arts Mastery: Expert in multiple forms of martial arts'],
   },
   {
     id: 25,
-    name: '(The) Sandman (Daniel Hall)',
+    name: '(THE) SANDMAN (DANIEL HALL)',
     powers: ["(Dream) Control: Can enter people's dreams and manipulate them"],
   },
   {
     id: 26,
-    name: 'Zatanna',
+    name: 'ZATANNA',
     powers: ['Magic Manipulation', 'Flight', 'Teleportation', 'Telekinesis', 'Energy Projection and Constructs'],
   },
   {
     id: 27,
-    name: '(The) Atom (Al Pratt)',
+    name: '(THE) ATOM (AL PRATT)',
     powers: ['Superhuman Strength', 'Superhuman Durability'],
   },
   {
     id: 28,
-    name: '(The) Flash (Wally West)',
+    name: '(THE) FLASH (WALLY WEST)',
     powers: [
       'Superhuman Speed',
       'Time Travel',
@@ -218,12 +218,12 @@ export const HEROES_MOCK_LIST: Hero[] = [
   },
   {
     id: 29,
-    name: 'Batwoman (Kate Kane)',
+    name: 'BATWOMAN (KATE KANE)',
     powers: ['Peak Human Physical Condition', 'Expert Combatant', 'Expert Detective', 'Genius-Level Intellect'],
   },
   {
     id: 30,
-    name: 'Cyborg Superman (Hank Henshaw)',
+    name: 'CYBORG SUPERMAN (HANK HENSHAW)',
     powers: [
       'Superhuman Strength',
       'Superhuman Durability',
