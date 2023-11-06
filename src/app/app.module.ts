@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +17,8 @@ import { HeroesListComponent } from './components/heroes/components/heroes-list/
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { OkCancelModalComponent } from './components/ok-cancel-modal/ok-cancel-modal.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { InputUppercaseDirective } from './directives/input-uppercase/input-uppercase.directive';
+import { DirectivesModuleModule } from './directives/directives-module.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     PageNotFoundComponent,
   ],
   imports: [
+    CommonModule,
     RouterModule.forRoot(AppRoutes),
     BrowserModule,
     BrowserAnimationsModule,
@@ -37,6 +41,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatFormFieldModule,
     MatDialogModule,
     FormsModule,
+    DirectivesModuleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

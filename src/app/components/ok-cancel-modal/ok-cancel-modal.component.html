@@ -7,6 +7,7 @@
     <mat-form-field *ngFor="let input of data.inputs">
       <mat-label>{{ input.label }}</mat-label>
       <input
+        appInputUppercase
         matInput
         placeholder="Place {{ input.label }} here"
         name="{{ input.label }}"
