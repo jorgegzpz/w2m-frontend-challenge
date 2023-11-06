@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, map } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
 import { CustomErrorStateMatcher } from 'src/app/model/custom-error-state-matcher';
 import { DialogData } from 'src/app/model/dialog-data.model';
 import { Hero, HeroColum, HeroUndefinable, ModalTitle } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
-
 @Component({
   selector: 'app-heroes-list-header',
   templateUrl: './heroes-list-header.component.html',
@@ -18,6 +18,7 @@ export class HeroesListHeaderComponent implements OnInit {
 
   constructor(
     private heroesHandlerService: HeroesHandlerService,
+    private matSnackBar: MatSnackBar,
     public dialog: MatDialog
   ) {}
 
@@ -32,6 +33,7 @@ export class HeroesListHeaderComponent implements OnInit {
     this.openModalWithInputs(newHero, ModalTitle.add).subscribe(hero => {
       if (hero) {
         this.heroesHandlerService.addHero(hero);
+        this.notifyHeroAdded(hero.name.toUpperCase());
       }
     });
   }
@@ -42,7 +44,9 @@ export class HeroesListHeaderComponent implements OnInit {
     if (selectedHero) {
       this.openModalWithInputs(selectedHero, ModalTitle.edit).subscribe(hero => {
         if (hero) {
-          this.heroesHandlerService.editHero(hero);
+          if (this.heroesHandlerService.editHero(hero) > -1) {
+            this.notifyHeroEdited(hero.name);
+          }
         }
       });
     }
@@ -58,7 +62,9 @@ export class HeroesListHeaderComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe((dialogData: DialogData) => {
         if (dialogData) {
-          this.heroesHandlerService.removeHero(dialogData.id);
+          if (this.heroesHandlerService.removeHero(dialogData.id)) {
+            this.notifyHeroRemoved(selectedHero.name);
+          }
         }
       });
     }
@@ -106,5 +112,17 @@ export class HeroesListHeaderComponent implements OnInit {
         return undefined;
       })
     );
+  }
+
+  private notifyHeroRemoved(heroName: string) {
+    this.matSnackBar.open(`Say goodbye to ${heroName}`, 'Goodbye!');
+  }
+
+  private notifyHeroEdited(heroName: string) {
+    this.matSnackBar.open(`${heroName} edited correctly`, 'Cool!');
+  }
+
+  private notifyHeroAdded(heroName: string) {
+    this.matSnackBar.open(`Say hello to ${heroName}`, 'Welcome!');
   }
 }
