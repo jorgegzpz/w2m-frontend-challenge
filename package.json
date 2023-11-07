@@ -23,7 +23,9 @@
     "@angular/router": "^16.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.13.0",
+    "docker:build": "docker build --file ./src/Dockerfile -t w2m-frontend-challenge .",
+    "docker": "docker run -p 4200:4200 w2m-frontend-challenge"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.9",
