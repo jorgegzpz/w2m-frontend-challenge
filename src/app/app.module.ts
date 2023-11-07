@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,6 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { OkCancelModalComponent } from './components/ok-cancel-modal/ok-cancel-modal.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DirectivesModuleModule } from './directives/directives-module.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +44,7 @@ import { DirectivesModuleModule } from './directives/directives-module.module';
     DirectivesModuleModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

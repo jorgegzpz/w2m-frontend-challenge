@@ -15,6 +15,7 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
 })
 export class HeroesListHeaderComponent implements OnInit {
   buttonDisabled = true;
+  showSpinner = false;
 
   constructor(
     private heroesHandlerService: HeroesHandlerService,
@@ -31,10 +32,12 @@ export class HeroesListHeaderComponent implements OnInit {
   addHero() {
     const newHero = { id: -1, name: '', powers: [] } as HeroUndefinable;
     this.openModalWithInputs(newHero, ModalTitle.add).subscribe(hero => {
+      this.showSpinner = true;
       if (hero) {
         this.heroesHandlerService.addHero(hero);
         this.notifyHeroAdded(hero.name.toUpperCase());
       }
+      this.hideSpinner();
     });
   }
 
@@ -43,11 +46,13 @@ export class HeroesListHeaderComponent implements OnInit {
 
     if (selectedHero) {
       this.openModalWithInputs(selectedHero, ModalTitle.edit).subscribe(hero => {
+        this.showSpinner = true;
         if (hero) {
           if (this.heroesHandlerService.editHero(hero) > -1) {
             this.notifyHeroEdited(hero.name);
           }
         }
+        this.hideSpinner();
       });
     }
   }
@@ -61,11 +66,13 @@ export class HeroesListHeaderComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe((dialogData: DialogData) => {
+        this.showSpinner = true;
         if (dialogData) {
           if (this.heroesHandlerService.removeHero(dialogData.id)) {
             this.notifyHeroRemoved(selectedHero.name);
           }
         }
+        this.hideSpinner();
       });
     }
   }
@@ -124,5 +131,11 @@ export class HeroesListHeaderComponent implements OnInit {
 
   private notifyHeroAdded(heroName: string) {
     this.matSnackBar.open(`Say hello to ${heroName}`, 'Welcome!');
+  }
+
+  private hideSpinner() {
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 1000);
   }
 }
