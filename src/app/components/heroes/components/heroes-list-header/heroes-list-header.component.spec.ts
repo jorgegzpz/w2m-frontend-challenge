@@ -92,8 +92,6 @@ describe('HeroesListHeaderComponent', () => {
     expect(notifyHeroRemovedSpy).toHaveBeenCalledWith(selectedHero.name);
   });
 
-  // removeHero() method should not remove the hero if the dialog is cancelled.
-
   it('should not remove hero if dialog is cancelled', () => {
     const selectedHero = HEROES_MOCK_LIST[0];
     service.setSelectedHero(selectedHero);
