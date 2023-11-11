@@ -45,18 +45,17 @@ describe('HeroesHandlerService', () => {
   it('should return true when hero name includes filter', () => {
     const service = new HeroesHandlerService();
     const hero: Hero = HEROES_MOCK_LIST[0];
-    const filter = 'man';
+    const filter = 'MAN';
 
     const result = service.checkHeroFilter(hero, filter);
-
+    console.log(result);
     expect(result).toBe(true);
   });
 
   it('should return false when hero name does not include filter', () => {
     const service = new HeroesHandlerService();
     const hero: Hero = HEROES_MOCK_LIST[0];
-    const filter = 'woman';
-
+    const filter = 'WOMAN';
     const result = service.checkHeroFilter(hero, filter);
 
     expect(result).toBe(false);
@@ -76,8 +75,8 @@ describe('HeroesHandlerService', () => {
     const service = new HeroesHandlerService();
     const hero: Hero = {
       id: -1,
-      name: 'Manolito el fuerte',
-      powers: ['Eat hamburger with pickles', 'Sleep long naps'],
+      name: 'MANOLITO EL FUERTE',
+      powers: ['EAT HAMBURGER WITH PICKLES', 'SLEEP LONG NAPS'],
     };
 
     const heroId = service.addHero(hero);
@@ -92,8 +91,8 @@ describe('HeroesHandlerService', () => {
     const heroToEdit = HEROES_MOCK_LIST[0];
     const updatedHero = {
       id: heroToEdit.id,
-      name: 'Manolito el fuerte',
-      powers: ['Eat hamburger with pickles', 'Sleep long naps'],
+      name: 'MANOLITO EL FUERTE',
+      powers: ['EAT HAMBURGER WITH PICKLES', 'SLEEP LONG NAPS'],
     };
 
     service.editHero(updatedHero);

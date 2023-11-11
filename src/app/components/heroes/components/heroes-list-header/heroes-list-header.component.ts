@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, map } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
-import { CustomErrorStateMatcher } from 'src/app/model/custom-error-state-matcher';
 import { DialogData } from 'src/app/model/dialog-data.model';
+import { CustomErrorStateMatcher } from 'src/app/tools/custom-error-state-matcher';
 import { Hero, HeroColum, HeroUndefinable, ModalTitle } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
 @Component({
@@ -33,7 +33,7 @@ export class HeroesListHeaderComponent implements OnInit {
     const newHero = { id: -1, name: '', powers: [] } as HeroUndefinable;
     this.openModalWithInputs(newHero, ModalTitle.add).subscribe(hero => {
       this.showSpinner = true;
-      if (hero) {
+      if (hero?.name) {
         this.heroesHandlerService.addHero(hero);
         this.notifyHeroAdded(hero.name.toUpperCase());
       }
@@ -121,7 +121,7 @@ export class HeroesListHeaderComponent implements OnInit {
     );
   }
 
-  private notifyHeroRemoved(heroName: string) {
+  notifyHeroRemoved(heroName: string) {
     this.matSnackBar.open(`Say goodbye to ${heroName}`, 'Goodbye!');
   }
 

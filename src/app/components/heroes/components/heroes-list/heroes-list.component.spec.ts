@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Hero } from '../../model/hero.model';
@@ -18,7 +19,7 @@ describe('HeroesListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeroesListComponent],
-      imports: [MatFormFieldModule, MatPaginatorModule, MatTableModule, MatInputModule, BrowserAnimationsModule],
+      imports: [MatFormFieldModule, MatPaginatorModule, MatTableModule, MatInputModule, BrowserAnimationsModule, MatSnackBarModule],
     });
     fixture = TestBed.createComponent(HeroesListComponent);
     component = fixture.componentInstance;
@@ -49,8 +50,6 @@ describe('HeroesListComponent', () => {
 
     expect(spySelectedHero).toHaveBeenCalledWith(heroRow);
   });
-
-  // The component should correctly update the heroes list when the heroListChanged$ observable emits a new value.
 
   it('should update hero list on heroListChanged$ value received', () => {
     const heroesList = [{ id: 1, name: 'Superman', power: 'Flight' } as Hero];
