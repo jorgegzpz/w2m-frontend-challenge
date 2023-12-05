@@ -1,6 +1,9 @@
+import { CommonModule, UpperCasePipe } from '@angular/common';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Subject, map } from 'rxjs';
 import { Hero, HeroColum, HeroUndefinable } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
@@ -9,6 +12,8 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatInputModule, UpperCasePipe],
 })
 export class HeroesListComponent implements AfterViewInit {
   displayedColumns: string[] = Object.values(HeroColum);

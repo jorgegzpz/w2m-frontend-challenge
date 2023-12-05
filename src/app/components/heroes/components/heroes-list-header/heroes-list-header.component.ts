@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, map } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
 import { DialogData } from 'src/app/model/dialog-data.model';
@@ -12,6 +15,8 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
   selector: 'app-heroes-list-header',
   templateUrl: './heroes-list-header.component.html',
   styleUrls: ['./heroes-list-header.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule],
 })
 export class HeroesListHeaderComponent implements OnInit {
   buttonDisabled = true;

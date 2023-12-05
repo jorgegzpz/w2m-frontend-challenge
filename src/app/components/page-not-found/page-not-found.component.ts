@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -6,6 +7,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss'],
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, MatButtonModule],
 })
 export class PageNotFoundComponent {}

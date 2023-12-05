@@ -1,9 +1,7 @@
 import { Routes } from '@angular/router';
-import { HeroesComponent } from './components/heroes/heroes.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 export const AppRoutes: Routes = [
-  { path: 'heroes', component: HeroesComponent },
+  { path: 'heroes', loadComponent: () => import('./components/heroes/heroes.component').then(c => c.HeroesComponent) },
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', loadComponent: () => import('./components/page-not-found/page-not-found.component').then(c => c.PageNotFoundComponent) },
 ];
