@@ -17,9 +17,8 @@ describe('HeroesListHeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeroesListHeaderComponent],
+      imports: [HeroesListHeaderComponent,MatSnackBarModule],
       providers: [{ provide: MatDialog, useValue: {} }],
-      imports: [MatSnackBarModule],
     });
     fixture = TestBed.createComponent(HeroesListHeaderComponent);
     component = fixture.componentInstance;

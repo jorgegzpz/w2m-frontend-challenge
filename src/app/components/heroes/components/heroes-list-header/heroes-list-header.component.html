@@ -6,7 +6,9 @@
   <button mat-raised-button class="heroes-list-header__button" [disabled]="buttonDisabled" (click)="!buttonDisabled && removeHero()">
     Remove hero
   </button>
-  <div *ngIf="showSpinner" class="heroes-list-header__overlay">
-    <mat-spinner class="heroes-list-header__spinner" color="white"></mat-spinner>
-  </div>
+  @if (showSpinner) {
+    <div class="heroes-list-header__overlay">
+      <mat-spinner class="heroes-list-header__spinner" color="white"></mat-spinner>
+    </div>
+  }
 </header>

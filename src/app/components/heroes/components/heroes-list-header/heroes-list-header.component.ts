@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +15,7 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
   templateUrl: './heroes-list-header.component.html',
   styleUrls: ['./heroes-list-header.component.scss'],
   standalone: true,
-  imports: [CommonModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule],
+  imports: [MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule],
 })
 export class HeroesListHeaderComponent implements OnInit {
   buttonDisabled = true;

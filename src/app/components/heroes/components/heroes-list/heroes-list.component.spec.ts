@@ -18,8 +18,7 @@ describe('HeroesListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeroesListComponent],
-      imports: [MatFormFieldModule, MatPaginatorModule, MatTableModule, MatInputModule, BrowserAnimationsModule, MatSnackBarModule],
+      imports: [HeroesListComponent,MatFormFieldModule, MatPaginatorModule, MatTableModule, MatInputModule, BrowserAnimationsModule, MatSnackBarModule],
     });
     fixture = TestBed.createComponent(HeroesListComponent);
     component = fixture.componentInstance;

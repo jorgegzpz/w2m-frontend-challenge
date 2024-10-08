@@ -13,8 +13,7 @@ describe('OkCancelModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OkCancelModalComponent],
-      imports: [],
+      imports: [OkCancelModalComponent],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} },

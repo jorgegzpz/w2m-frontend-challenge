@@ -9,8 +9,7 @@ describe('PageNotFoundComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PageNotFoundComponent],
-      imports: [RouterModule.forRoot([])],
+      imports: [PageNotFoundComponent,RouterModule.forRoot([])],
     });
     fixture = TestBed.createComponent(PageNotFoundComponent);
     component = fixture.componentInstance;

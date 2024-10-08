@@ -4,16 +4,17 @@
   </mat-form-field>
   <mat-paginator #paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
   <table class="heroes-list__table mat-elevation-z8" mat-table [dataSource]="dataSource">
-    <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay; let i = index">
-      <th mat-header-cell *matHeaderCellDef>{{ displayedColumns[i] | uppercase }}</th>
-      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
-    </ng-container>
+    @for (column of columnsToDisplay; track column) {
+      <ng-container [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ column | uppercase }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+      </ng-container>
+    }
     <tr class="heroes-list__header" mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr
-      class="heroes-list__row"
       mat-row
       *matRowDef="let row; columns: columnsToDisplay"
-      [ngClass]="{ 'heroes-list__row--highlight': (heroSelected$ | async)?.id === row.id }"
+      [ngClass]="{ 'heroes-list__row': true, 'heroes-list__row--highlight': (heroSelected$ | async)?.id === row.id }"
       (click)="highlight(row)"
     ></tr>
     <tr class="mat-row" *matNoDataRow>

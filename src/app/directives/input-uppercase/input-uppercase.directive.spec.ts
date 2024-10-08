@@ -1,7 +1,7 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { InputUppercaseDirective } from './input-uppercase.directive';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { InputUppercaseDirective } from './input-uppercase.directive';
 
 @Component({
   template: '<input appInputUppercase [(ngModel)]="model" />',
@@ -15,8 +15,8 @@ describe('InputUppercaseDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, InputUppercaseDirective],
-      imports: [FormsModule]
+      declarations: [TestComponent],
+      imports: [InputUppercaseDirective, FormsModule]
     });
 
     fixture = TestBed.createComponent(TestComponent);
