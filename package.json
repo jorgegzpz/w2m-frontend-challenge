@@ -49,6 +49,6 @@
     "prettier": "3.3.3",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^11.0.0",
-    "typescript": "5.6.3"
+    "typescript": "5.5.4"
   }
 }
