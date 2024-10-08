@@ -15,8 +15,12 @@
 - Updated the project to Angular CLI 18
 - Updated the project to Angular Devkit 18
 - Updated the project to Angular Compiler CLI 18
+- Use of @if instead of *ngIf
+- Use of @for instead of *ngFor
 
 ### Deprecated
+
+- Deprecated the use of *ngIf and *ngFor
 
 ### Removed
 
@@ -24,7 +28,3 @@
 
 - Fixed the project to work with Angular 18
 - Fixed tests to work with Angular 18
-### Security
-
-
-
