@@ -20,7 +20,9 @@
               [formControl]="input.formControl"
               [errorStateMatcher]="input.matcher"
             />
-            <mat-error *ngIf="input.formControl?.hasError('required')">{{ input.label }} is <strong>required</strong> </mat-error>
+            @if (input.formControl.hasError('required')) {
+              <mat-error>{{ input.label }} is <strong>required</strong> </mat-error>
+            }
           </mat-form-field>
         }
       </form>

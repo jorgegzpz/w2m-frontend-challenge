@@ -1,4 +1,4 @@
-import { UpperCasePipe } from '@angular/common';
+import { AsyncPipe, NgClass, UpperCasePipe } from '@angular/common';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -13,7 +13,7 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss'],
   standalone: true,
-  imports: [MatDialogModule, MatPaginatorModule, MatTableModule, MatInputModule, UpperCasePipe],
+  imports: [MatDialogModule, MatPaginatorModule, MatTableModule, MatInputModule, UpperCasePipe, NgClass, AsyncPipe],
 })
 export class HeroesListComponent implements AfterViewInit {
   displayedColumns: string[] = Object.values(HeroColum);
