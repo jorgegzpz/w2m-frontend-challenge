@@ -18,7 +18,15 @@ describe('HeroesListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HeroesListComponent,MatFormFieldModule, MatPaginatorModule, MatTableModule, MatInputModule, BrowserAnimationsModule, MatSnackBarModule],
+      imports: [
+        HeroesListComponent,
+        MatFormFieldModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        MatSnackBarModule,
+      ],
     });
     fixture = TestBed.createComponent(HeroesListComponent);
     component = fixture.componentInstance;
@@ -52,7 +60,7 @@ describe('HeroesListComponent', () => {
 
   it('should update hero list on heroListChanged$ value received', () => {
     const heroesList = [{ id: 1, name: 'Superman', power: 'Flight' } as Hero];
-    service.heroListChanged$.next(heroesList);
+    service.heroesList.set(heroesList);
     expect(component.dataSource.data).toEqual(heroesList);
     expect(component.dataSource.paginator).toBe(component.paginator);
   });

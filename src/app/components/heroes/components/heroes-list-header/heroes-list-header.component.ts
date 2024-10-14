@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Observable, map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
 import { DialogData } from 'src/app/model/dialog-data.model';
 import { CustomErrorStateMatcher } from 'src/app/tools/custom-error-state-matcher';
-import { Hero, HeroColum, HeroUndefinable, ModalTitle } from '../../model/hero.model';
+import { Hero, HeroColum, ModalTitle } from '../../model/hero.model';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
 @Component({
   selector: 'app-heroes-list-header',
@@ -17,24 +17,17 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
   standalone: true,
   imports: [MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule],
 })
-export class HeroesListHeaderComponent implements OnInit {
-  buttonDisabled = true;
+export class HeroesListHeaderComponent {
+  private heroesHandlerService = inject(HeroesHandlerService);
+  private readonly matSnackBar = inject(MatSnackBar);
+  dialog = inject(MatDialog);
+
+  buttonDisabled = computed(() => this.heroesHandlerService.heroSelected() === undefined);
+
   showSpinner = false;
 
-  constructor(
-    private heroesHandlerService: HeroesHandlerService,
-    private matSnackBar: MatSnackBar,
-    public dialog: MatDialog
-  ) {}
-
-  ngOnInit() {
-    this.heroesHandlerService.heroSelected$.subscribe(heroSelected => {
-      this.buttonDisabled = heroSelected === undefined;
-    });
-  }
-
   addHero() {
-    const newHero = { id: -1, name: '', powers: [] } as HeroUndefinable;
+    const newHero = { id: -1, name: '', powers: [] };
     this.openModalWithInputs(newHero, ModalTitle.add).subscribe(hero => {
       this.showSpinner = true;
       if (hero?.name) {
@@ -46,7 +39,7 @@ export class HeroesListHeaderComponent implements OnInit {
   }
 
   editHero() {
-    const selectedHero = this.heroesHandlerService.getSelectedHero();
+    const selectedHero = this.heroesHandlerService.heroSelected();
 
     if (selectedHero) {
       this.openModalWithInputs(selectedHero, ModalTitle.edit).subscribe(hero => {
@@ -62,7 +55,7 @@ export class HeroesListHeaderComponent implements OnInit {
   }
 
   removeHero() {
-    const selectedHero = this.heroesHandlerService.getSelectedHero();
+    const selectedHero = this.heroesHandlerService.heroSelected();
 
     if (selectedHero) {
       const dialogRef = this.dialog.open(OkCancelModalComponent, {
@@ -81,7 +74,7 @@ export class HeroesListHeaderComponent implements OnInit {
     }
   }
 
-  openModalWithInputs(hero: HeroUndefinable, title: string): Observable<HeroUndefinable> {
+  openModalWithInputs(hero: Hero, title: string): Observable<Hero | undefined> {
     const dialogRef = this.dialog.open(OkCancelModalComponent, {
       width: '500px',
       data: {

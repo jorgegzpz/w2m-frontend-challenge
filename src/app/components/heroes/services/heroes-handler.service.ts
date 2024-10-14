@@ -1,57 +1,51 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { Hero, HeroUndefinable } from '../model/hero.model';
+import { Injectable, signal } from '@angular/core';
+import { Hero } from '../model/hero.model';
 import { HEROES_MOCK_LIST } from '../model/heroes-mock-list';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroesHandlerService {
-  heroListChanged$: BehaviorSubject<Hero[]> = new BehaviorSubject(HEROES_MOCK_LIST);
-  heroSelected$: Subject<HeroUndefinable> = new Subject();
+  heroesList = signal<Hero[]>(HEROES_MOCK_LIST);
+  heroSelected = signal<Hero | undefined>(undefined);
 
-  private heroesList: Hero[] = HEROES_MOCK_LIST;
-  private selectedHero: HeroUndefinable = undefined;
-
-  getHeroesList(): Hero[] {
-    return this.heroesList;
-  }
+  private heroesListArray: Hero[] = HEROES_MOCK_LIST;
 
   getHeroById(id: number): Hero | null {
-    return this.heroesList.find(hero => hero.id === id) || null;
+    return this.heroesList().find(hero => hero.id === id) || null;
   }
 
   checkHeroFilter(hero: Hero, filter: string): boolean {
-    return hero.name.includes(filter);
+    return hero.name.toLowerCase().includes(filter.toLowerCase());
   }
 
   addHero(hero: Hero): number {
-    const id = this.heroesList[this.heroesList.length - 1].id + 1;
-    this.heroesList.push({
+    const id = this.heroesListArray[this.heroesListArray.length - 1].id + 1;
+    this.heroesListArray.push({
       id,
       name: hero.name.toUpperCase(),
       powers: hero.powers,
     });
-    this.heroListChanged$.next(this.heroesList);
+    this.heroesList.set(this.heroesListArray);
     return id;
   }
 
   editHero(heroToEdit: Hero): number {
-    const heroToEditIndex = this.heroesList.findIndex(hero => hero.id === heroToEdit.id);
+    const heroToEditIndex = this.heroesListArray.findIndex(hero => hero.id === heroToEdit.id);
     if (heroToEditIndex > -1) {
-      this.heroesList[heroToEditIndex].name = heroToEdit.name.toUpperCase();
-      this.heroesList[heroToEditIndex].powers = heroToEdit.powers;
-      this.heroListChanged$.next(this.heroesList);
+      this.heroesListArray[heroToEditIndex].name = heroToEdit.name.toUpperCase();
+      this.heroesListArray[heroToEditIndex].powers = heroToEdit.powers;
+      this.heroesList.set(this.heroesListArray);
       this.setSelectedHero();
     }
     return heroToEditIndex;
   }
 
-  removeHero(id: number): HeroUndefinable {
-    const heroToRemoveIndex = this.heroesList.findIndex(hero => hero.id === id);
+  removeHero(id: number): Hero | undefined {
+    const heroToRemoveIndex = this.heroesListArray.findIndex(hero => hero.id === id);
     if (heroToRemoveIndex > -1) {
-      const heroRemoved = this.heroesList.splice(heroToRemoveIndex, 1);
-      this.heroListChanged$.next(this.heroesList);
+      const heroRemoved = this.heroesListArray.splice(heroToRemoveIndex, 1);
+      this.heroesList.set(this.heroesListArray);
       this.setSelectedHero();
       return heroRemoved[0];
     } else {
@@ -59,21 +53,12 @@ export class HeroesHandlerService {
     }
   }
 
-  setSelectedHero(hero: HeroUndefinable = undefined): void {
-    if (this.selectedHero === hero) {
-      this.selectedHero = undefined;
-    } else {
-      this.selectedHero = hero;
-    }
-    this.heroSelected$.next(this.selectedHero);
-  }
-
-  getSelectedHero(): HeroUndefinable {
-    return this.selectedHero;
+  setSelectedHero(hero: Hero | undefined = undefined): void {
+    this.heroSelected.set(this.heroSelected() === hero ? undefined : hero);
   }
 
   checkSelectedHero(filteredHeroes: Hero[]): void {
-    if (this.selectedHero ?? filteredHeroes.findIndex(filteredHero => filteredHero.id === this.selectedHero?.id) === -1) {
+    if (this.heroSelected() ?? filteredHeroes.findIndex(filteredHero => filteredHero.id === this.heroSelected()?.id) === -1) {
       this.setSelectedHero();
     }
   }

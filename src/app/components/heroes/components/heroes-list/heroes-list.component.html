@@ -1,4 +1,4 @@
-<section class="heroes-list">
+<article class="heroes-list">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter" />
   </mat-form-field>
@@ -14,7 +14,7 @@
     <tr
       mat-row
       *matRowDef="let row; columns: columnsToDisplay"
-      [ngClass]="{ 'heroes-list__row': true, 'heroes-list__row--highlight': (heroSelected$ | async)?.id === row.id }"
+      [ngClass]="{ 'heroes-list__row': true, 'heroes-list__row--highlight': heroSelected()?.id === row.id }"
       (click)="highlight(row)"
     ></tr>
     <tr class="mat-row" *matNoDataRow>
@@ -24,4 +24,4 @@
       </div>
     </tr>
   </table>
-</section>
+</article>

@@ -4,8 +4,6 @@ export interface Hero {
   powers?: string[];
 }
 
-export type HeroUndefinable = Hero | undefined;
-
 export enum HeroColum {
   id = 'Id',
   name = 'Name',

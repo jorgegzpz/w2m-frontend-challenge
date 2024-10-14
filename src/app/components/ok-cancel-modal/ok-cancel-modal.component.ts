@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -14,10 +14,8 @@ import { DialogData } from 'src/app/model/dialog-data.model';
   imports: [MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatButtonModule],
 })
 export class OkCancelModalComponent {
-  constructor(
-    public dialogRef: MatDialogRef<OkCancelModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  dialogRef = inject(MatDialogRef<OkCancelModalComponent>);
+  data: DialogData = inject(MAT_DIALOG_DATA);
 
   onCancel(): void {
     this.dialogRef.close();

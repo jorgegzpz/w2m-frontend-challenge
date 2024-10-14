@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { of } from 'rxjs';
 import { OkCancelModalComponent } from 'src/app/components/ok-cancel-modal/ok-cancel-modal.component';
-import { HeroUndefinable, ModalTitle } from '../../model/hero.model';
+import { Hero, ModalTitle } from '../../model/hero.model';
 import { HEROES_MOCK_LIST } from '../../model/heroes-mock-list';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
 import { HeroesListHeaderComponent } from './heroes-list-header.component';
@@ -17,7 +17,7 @@ describe('HeroesListHeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HeroesListHeaderComponent,MatSnackBarModule],
+      imports: [HeroesListHeaderComponent, MatSnackBarModule],
       providers: [{ provide: MatDialog, useValue: {} }],
     });
     fixture = TestBed.createComponent(HeroesListHeaderComponent);
@@ -27,7 +27,7 @@ describe('HeroesListHeaderComponent', () => {
 
   beforeEach(() => {
     service = TestBed.inject<HeroesHandlerService>(HeroesHandlerService);
-    service['heroesList'] = HEROES_MOCK_LIST;
+    service.heroesList.set(HEROES_MOCK_LIST);
     dialog = TestBed.inject(MatDialog);
     fixture.detectChanges();
   });
@@ -40,14 +40,8 @@ describe('HeroesListHeaderComponent', () => {
     expect(component.buttonDisabled).toBeTrue();
   });
 
-  it('should subscribe to heroSelected$ observable', () => {
-    spyOn(service.heroSelected$, 'subscribe');
-    component.ngOnInit();
-    expect(service.heroSelected$.subscribe).toHaveBeenCalled();
-  });
-
   it('should call openModalWithInputs with no fields filled', () => {
-    spyOn(component, 'openModalWithInputs').and.returnValue(of({} as HeroUndefinable));
+    spyOn(component, 'openModalWithInputs').and.returnValue(of({} as Hero | undefined));
     spyOn(service, 'addHero');
 
     component.addHero();
@@ -59,7 +53,7 @@ describe('HeroesListHeaderComponent', () => {
     const selectedHero = HEROES_MOCK_LIST[0];
     service.setSelectedHero(selectedHero);
 
-    spyOn(component, 'openModalWithInputs').and.returnValue(of({} as HeroUndefinable));
+    spyOn(component, 'openModalWithInputs').and.returnValue(of({} as Hero | undefined));
     spyOn(service, 'editHero');
 
     component.editHero();
@@ -80,7 +74,7 @@ describe('HeroesListHeaderComponent', () => {
     const dialogSpy = spyOn(dialog, 'open').and.returnValue(dialogRef);
 
     const removeHeroSpy = spyOn(service, 'removeHero').and.returnValue(selectedHero);
-    const selectedHeroSpy = spyOn(service, 'getSelectedHero').and.returnValue(selectedHero);
+    const selectedHeroSpy = spyOn(service, 'heroSelected').and.returnValue(selectedHero);
 
     const notifyHeroRemovedSpy = spyOn(component, 'notifyHeroRemoved');
     component.removeHero();
@@ -102,7 +96,7 @@ describe('HeroesListHeaderComponent', () => {
     const dialogSpy = spyOn(dialog, 'open').and.returnValue(dialogRef);
 
     const removeHeroSpy = spyOn(service, 'removeHero');
-    const selectedHeroSpy = spyOn(service, 'getSelectedHero').and.returnValue(selectedHero);
+    const selectedHeroSpy = spyOn(service, 'heroSelected').and.returnValue(selectedHero);
 
     component.removeHero();
 

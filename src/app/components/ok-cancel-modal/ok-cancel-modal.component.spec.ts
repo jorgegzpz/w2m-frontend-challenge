@@ -41,11 +41,13 @@ describe('OkCancelModalComponent', () => {
       },
     ];
 
-    component = new OkCancelModalComponent(dialogRef, {
+    component = new OkCancelModalComponent();
+    component.dialogRef = dialogRef;
+    component.data = {
       id: 1,
       title: 'Test',
       inputs,
-    });
+    };
   });
 
   it('should close modal when cancel button is clicked', () => {

@@ -1,9 +1,9 @@
 <header class="heroes-list-header">
   <button class="heroes-list-header__button" mat-raised-button (click)="addHero()">Add hero</button>
-  <button mat-raised-button class="heroes-list-header__button" [disabled]="buttonDisabled" (click)="!buttonDisabled && editHero()">
+  <button mat-raised-button class="heroes-list-header__button" [disabled]="buttonDisabled()" (click)="!buttonDisabled() && editHero()">
     Edit hero
   </button>
-  <button mat-raised-button class="heroes-list-header__button" [disabled]="buttonDisabled" (click)="!buttonDisabled && removeHero()">
+  <button mat-raised-button class="heroes-list-header__button" [disabled]="buttonDisabled()" (click)="!buttonDisabled() && removeHero()">
     Remove hero
   </button>
   @if (showSpinner) {
