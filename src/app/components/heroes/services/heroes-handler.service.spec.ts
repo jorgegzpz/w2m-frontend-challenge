@@ -16,7 +16,7 @@ describe('HeroesHandlerService', () => {
   });
 
   beforeEach(() => {
-    service['heroesList'] = HEROES_MOCK_LIST;
+    service.heroesList.set(HEROES_MOCK_LIST);
   });
 
   it('should be created', () => {
@@ -26,8 +26,8 @@ describe('HeroesHandlerService', () => {
   it('should return an array of heroes equal to heroesList', () => {
     const service = new HeroesHandlerService();
     const heroesList = HEROES_MOCK_LIST;
-    expect(service.getHeroesList()).toEqual(heroesList);
-    expect(service.getHeroesList().length).toEqual(heroesList.length);
+    expect(service.heroesList()).toEqual(heroesList);
+    expect(service.heroesList().length).toEqual(heroesList.length);
   });
 
   it('should return a hero', () => {
@@ -81,7 +81,7 @@ describe('HeroesHandlerService', () => {
 
     const heroId = service.addHero(hero);
 
-    expect(service.getHeroesList().length).toBe(HEROES_MOCK_LIST.length);
+    expect(service.heroesList().length).toBe(HEROES_MOCK_LIST.length);
     expect(service.getHeroById(heroId)?.name).toEqual(hero.name);
     expect(service.getHeroById(heroId)?.powers).toEqual(hero.powers);
   });
@@ -98,16 +98,16 @@ describe('HeroesHandlerService', () => {
     service.editHero(updatedHero);
 
     expect(service.getHeroById(heroToEdit.id)).toEqual(updatedHero);
-    expect(service.heroListChanged$.getValue().find(hero => hero.id === updatedHero.id)).toEqual(updatedHero);
+    expect(service.heroesList().find(hero => hero.id === updatedHero.id)).toEqual(updatedHero);
   });
 
   it('should remove a hero from the heroes list', () => {
     const service = new HeroesHandlerService();
     const heroId = HEROES_MOCK_LIST[0].id;
 
-    const initialHeroList = [...service.getHeroesList()];
+    const initialHeroList = [...service.heroesList()];
     const removedHero = service.removeHero(heroId);
-    const updatedHeroList = service.getHeroesList();
+    const updatedHeroList = service.heroesList();
 
     expect(removedHero).not.toBeUndefined();
     expect(removedHero).toEqual(initialHeroList.find(hero => hero.id === heroId));
