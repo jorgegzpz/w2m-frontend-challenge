@@ -19,15 +19,14 @@ export class HeroesHandlerService {
     return hero.name.toLowerCase().includes(filter.toLowerCase());
   }
 
-  addHero(hero: Hero): number {
-    const id = this.heroesListArray[this.heroesListArray.length - 1].id + 1;
-    this.heroesListArray.push({
-      id,
-      name: hero.name.toUpperCase(),
-      powers: hero.powers,
-    });
-    this.heroesList.set(this.heroesListArray);
-    return id;
+  addHero(hero: Hero): void {
+    this.heroesList.update(heroesList =>
+      heroesList.concat({
+        id: this.heroesList()[this.heroesList().length - 1].id + 1,
+        name: hero.name.toUpperCase(),
+        powers: hero.powers,
+      })
+    );
   }
 
   editHero(heroToEdit: Hero): number {

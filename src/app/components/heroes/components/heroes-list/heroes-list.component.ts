@@ -23,13 +23,13 @@ export class HeroesListComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Hero>();
 
   heroSelected = this.heroesHandlerService.heroSelected;
+  heroesList = this.heroesHandlerService.heroesList;
 
   @ViewChild('paginator') paginator: MatPaginator;
 
   constructor() {
     effect(() => {
-      const heroesList = this.heroesHandlerService.heroesList();
-      this.dataSource = new MatTableDataSource(heroesList || []);
+      this.dataSource = new MatTableDataSource(this.heroesList() || []);
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = (hero: Hero, filter: string) => !filter || this.heroesHandlerService.checkHeroFilter(hero, filter);
     });
