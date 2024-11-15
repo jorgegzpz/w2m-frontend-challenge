@@ -9,8 +9,6 @@ export class HeroesHandlerService {
   heroesList = signal<Hero[]>(HEROES_MOCK_LIST);
   heroSelected = signal<Hero | undefined>(undefined);
 
-  private heroesListArray: Hero[] = HEROES_MOCK_LIST;
-
   getHeroById(id: number): Hero | null {
     return this.heroesList().find(hero => hero.id === id) || null;
   }
@@ -30,26 +28,19 @@ export class HeroesHandlerService {
   }
 
   editHero(heroToEdit: Hero): number {
-    const heroToEditIndex = this.heroesListArray.findIndex(hero => hero.id === heroToEdit.id);
+    const heroToEditIndex = this.heroesList().findIndex(hero => hero.id === heroToEdit.id);
     if (heroToEditIndex > -1) {
-      this.heroesListArray[heroToEditIndex].name = heroToEdit.name.toUpperCase();
-      this.heroesListArray[heroToEditIndex].powers = heroToEdit.powers;
-      this.heroesList.set(this.heroesListArray);
+      this.heroesList()[heroToEditIndex].name = heroToEdit.name;
+      this.heroesList()[heroToEditIndex].powers = heroToEdit.powers;
       this.setSelectedHero();
     }
     return heroToEditIndex;
   }
 
-  removeHero(id: number): Hero | undefined {
-    const heroToRemoveIndex = this.heroesListArray.findIndex(hero => hero.id === id);
-    if (heroToRemoveIndex > -1) {
-      const heroRemoved = this.heroesListArray.splice(heroToRemoveIndex, 1);
-      this.heroesList.set(this.heroesListArray);
+  removeHero(id: number): boolean {
+      this.heroesList.update(heroesList => heroesList.filter(hero => hero.id !== id));
       this.setSelectedHero();
-      return heroRemoved[0];
-    } else {
-      return undefined;
-    }
+      return true;
   }
 
   setSelectedHero(hero: Hero | undefined = undefined): void {

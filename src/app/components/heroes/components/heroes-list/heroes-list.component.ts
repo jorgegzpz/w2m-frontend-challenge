@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, UpperCasePipe } from '@angular/common';
+import { NgClass, UpperCasePipe } from '@angular/common';
 import { AfterViewInit, Component, effect, inject, ViewChild } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -12,7 +12,7 @@ import { HeroesHandlerService } from '../../services/heroes-handler.service';
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss'],
   standalone: true,
-  imports: [MatDialogModule, MatPaginatorModule, MatTableModule, MatInputModule, UpperCasePipe, NgClass, AsyncPipe],
+  imports: [MatDialogModule, MatPaginatorModule, MatTableModule, MatInputModule, UpperCasePipe, NgClass],
 })
 export class HeroesListComponent implements AfterViewInit {
   private readonly heroesHandlerService = inject(HeroesHandlerService);
@@ -32,6 +32,7 @@ export class HeroesListComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource(this.heroesList() || []);
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = (hero: Hero, filter: string) => !filter || this.heroesHandlerService.checkHeroFilter(hero, filter);
+      console.log(this.heroesList());
     });
   }
 
