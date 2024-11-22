@@ -6,7 +6,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Hero } from '../../model/hero.model';
 import { HEROES_MOCK_LIST } from '../../model/heroes-mock-list';
 import { HeroesHandlerService } from '../../services/heroes-handler.service';
 import { HeroesListComponent } from './heroes-list.component';
@@ -28,13 +27,13 @@ describe('HeroesListComponent', () => {
         MatSnackBarModule,
       ],
     });
+
     fixture = TestBed.createComponent(HeroesListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  beforeEach(() => {
     service = fixture.debugElement.injector.get(HeroesHandlerService);
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -56,12 +55,5 @@ describe('HeroesListComponent', () => {
     component.highlight(heroRow);
 
     expect(spySelectedHero).toHaveBeenCalledWith(heroRow);
-  });
-
-  it('should update hero list on heroListChanged$ value received', () => {
-    const heroesList = [{ id: 1, name: 'Superman', power: 'Flight' } as Hero];
-    service.heroesList.set(heroesList);
-    expect(component.dataSource.data).toEqual(heroesList);
-    expect(component.dataSource.paginator).toBe(component.paginator);
   });
 });

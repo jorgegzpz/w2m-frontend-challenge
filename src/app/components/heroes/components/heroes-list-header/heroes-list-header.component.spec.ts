@@ -23,13 +23,10 @@ describe('HeroesListHeaderComponent', () => {
     fixture = TestBed.createComponent(HeroesListHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
 
-  beforeEach(() => {
     service = TestBed.inject<HeroesHandlerService>(HeroesHandlerService);
     service.heroesList.set(HEROES_MOCK_LIST);
     dialog = TestBed.inject(MatDialog);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -37,7 +34,7 @@ describe('HeroesListHeaderComponent', () => {
   });
 
   it('should disable button by default', () => {
-    expect(component.buttonDisabled).toBeTrue();
+    expect(component.buttonDisabled()).toBeTrue();
   });
 
   it('should call openModalWithInputs with no fields filled', () => {
@@ -73,7 +70,7 @@ describe('HeroesListHeaderComponent', () => {
     dialog.open = () => dialogRef;
     const dialogSpy = spyOn(dialog, 'open').and.returnValue(dialogRef);
 
-    const removeHeroSpy = spyOn(service, 'removeHero').and.returnValue(selectedHero);
+    const removeHeroSpy = spyOn(service, 'removeHero').and.returnValue(true);
     const selectedHeroSpy = spyOn(service, 'heroSelected').and.returnValue(selectedHero);
 
     const notifyHeroRemovedSpy = spyOn(component, 'notifyHeroRemoved');

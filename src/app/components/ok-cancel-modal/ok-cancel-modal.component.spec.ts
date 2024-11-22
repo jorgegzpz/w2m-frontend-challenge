@@ -12,20 +12,19 @@ describe('OkCancelModalComponent', () => {
   let inputs: DialogDataInput[];
 
   beforeEach(() => {
+    dialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
+
     TestBed.configureTestingModule({
       imports: [OkCancelModalComponent],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
-        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: dialogRef },
       ],
-    });
+    }).compileComponents();
+
     fixture = TestBed.createComponent(OkCancelModalComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  beforeEach(() => {
-    dialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
     inputs = [
       {
         label: 'Name',
@@ -41,13 +40,13 @@ describe('OkCancelModalComponent', () => {
       },
     ];
 
-    component = new OkCancelModalComponent();
-    component.dialogRef = dialogRef;
     component.data = {
       id: 1,
       title: 'Test',
       inputs,
     };
+
+    fixture.detectChanges();
   });
 
   it('should close modal when cancel button is clicked', () => {
